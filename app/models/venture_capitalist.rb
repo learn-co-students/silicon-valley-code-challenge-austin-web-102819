@@ -49,15 +49,7 @@ class VentureCapitalist
     end
 
     def invested(domain)
-        sum = 0
-        
-        arr = FundingRound.all.select do |f|
-            f.startup.domain == domain
-        end
-
-        arr.each do |s|
-            sum += s.amount_invested
-        end
-        sum
+        arr = FundingRound.all.select {|f| f.startup.domain == domain}
+        arr.reduce(0) {|sum, fund| sum + fund.amount_invested}
     end
 end
