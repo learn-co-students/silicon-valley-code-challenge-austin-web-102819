@@ -13,6 +13,7 @@ class Startup
     def pivot(domain, name)
         @domain = domain
         @name = name
+        @@domains << domain
     end
     def self.all
         @@all
