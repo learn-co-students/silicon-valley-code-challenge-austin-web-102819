@@ -31,12 +31,8 @@ class Startup
         FundingRound.all.select{ |fund| fund.startup.name == self.name}.count
     end
     def total_funds
-        total = 0
         arr = FundingRound.all.select{ |fund| fund.startup.name == self.name}
-        arr.each do |fun|
-                total += fun.investment
-        end
-        total
+        arr.reduce(0) {|sum, num| sum += num.investment}
     end
     def investors
         total = []
